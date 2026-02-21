@@ -24,8 +24,9 @@ interface JobListResponse {
   jobs?: Job[];
   [key: string]: unknown;
 }
-
+// Tiraba error el body por que necesitaba el campo applicationId, entonces lo agruegue al momento de hacer el envio.
 interface ApplicationRequest {
+  applicationId: string;
   uuid: string;
   jobId: string;
   candidateId: string;
@@ -88,7 +89,7 @@ export function JobApplicationForm() {
     }
   }, [candidateData, emailSubmitted, getJobs]);
 
-  // Step 5: Enviar postulación
+  // Enviar postulación
   const handleApplyToJob = async (jobId: string) => {
     const repoUrl = repoUrls[jobId];
     
@@ -101,17 +102,19 @@ export function JobApplicationForm() {
       alert('Datos del candidato no disponibles');
       return;
     }
-
+    // Me di cuenta en el devtools del navegador, que era un error de body, y especificaba que campo faltaba enviar, entonces lo agregue al body de la solicitud. Ahora ya no tira error y se puede aplicar al trabajo correctamente.
     try {
       const applicationData: ApplicationRequest = {
+        applicationId: candidateData.applicationId,
         uuid: candidateData.uuid,
         jobId,
         candidateId: candidateData.candidateId,
         repoUrl,
       };
+      // Como tiraba error, hice un console.log para mostrar los datos que se van a enviar
+      console.log(applicationData);
 
       await post('/api/candidate/apply-to-job', applicationData);
-      
       // Marcar como aplicación exitosa
       setSuccessfulApplications((prev) => new Set(prev).add(jobId));
       

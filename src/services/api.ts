@@ -85,24 +85,6 @@ class ApiClient {
     });
   }
 
-  /**
-   * PUT - Actualizar datos
-   */
-  async put<T>(endpoint: string, body: unknown): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'PUT',
-      body: JSON.stringify(body),
-    });
-  }
-
-  /**
-   * DELETE - Eliminar datos
-   */
-  async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'DELETE',
-    });
-  }
 }
 
 // Exportar la instancia del cliente
