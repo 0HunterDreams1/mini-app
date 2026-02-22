@@ -4,6 +4,18 @@
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .logo {
@@ -12,11 +24,61 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @keyframes logo-spin {
@@ -27,16 +89,205 @@
     transform: rotate(360deg);
   }
 }
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
-.card {
-  padding: 2em;
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
-.read-the-docs {
-  color: #888;
-}
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #f4f8f8;
+  }
+  .titleHeader {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(46, 26, 71, 1);
+    inset: '0 0 auto 0', 
+  } 
+  .form {
+    background: 'none';
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    padding: 5px 30px 5px 30px;
+    margin: 5px 150px 5px 150px;
+    background-color: #dfdede;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .section {
+    margin-bottom: 30px;
+  }
+  .emailInputGroup {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .textTitleContent {
+    color: #2e1a47;
+  }
+  .header {
+    display: flex;
+  }
+  .candidateInfoHeader {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .candidateDiv {
+    display: flex;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+  }
+  .pInfo {
+    font-size: 16px;
+    margin: 0 0 0 0;
+  }
+  .candidateInfo {
+    display:flex;
+    justify-content: space-around;
+    flex-direction: column; 
+    text-align: left; 
+    margin-left: 10px;
+    background-color: rgba(46, 26, 71, 0.7);
+    border: 1px solid #0a0a0ad5;
+    border-radius: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+  } 
+  .candidateIcon {
+    display:flex; 
+    justify-content:flex-start; 
+    align-items:center;
+    margin-right:10px;
+    padding: 5px;
+    background: none;
+    border-radius: 6px;
+  }
+  .buttonDivBack {
+    display: flex; 
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+  .iconButton {
+    padding: 4px 5px;
+    font-size: 12px;
+    color: white;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    width: 28px;
+    min-width: 28px;
+    line-height: 1;
+  }
+  .jobsList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  .jobCard {
+    padding: 15px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: rgba(46, 26, 71, 0.5);
+  }
+  .jobHeader {
+    margin-bottom: 12px;
+  }
+  .jobDescription {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+  }
+  .jobForm {
+    display: flex;
+    gap: 10px;
+  }
+  .input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  .button {
+    padding: 8px 24px;
+    font-size: 16px;
+    color: white;
+    background-color: #2e1a47;
+    font-family: 'Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif', sans-serif;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .submitButton {
+    padding: 8px 24px;
+    font-size: 16px;
+    color: white;
+    font-family: 'Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif', sans-serif;
+    background-color: #2e1a47;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .cancelButton {
+    padding: 8px 24px;
+    font-size: 16px;
+    color: white;
+    font-family: 'Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif', sans-serif;
+    background-color: #c23d38;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .error {
+    padding: 12px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 6px;
+    margin-top: 10px;
+    border: 1px solid #f5c6cb;
+  } as React.CSSProperties,
+  .success {
+    padding: 12px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 6px;
+    margin-top: 10px;
+    border: 1px solid #c3e6cb;
+  }

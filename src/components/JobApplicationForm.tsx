@@ -137,41 +137,38 @@ export function JobApplicationForm() {
 
   return (
     <>
-        <div style={styles.titleHeader}>
+        <div className='titleHeader'>
             <h4>Portal de Aplicación de Candidatos</h4>
         </div>
-        <div style={styles.container}>
-            <div style={styles.form}>
+        <div className='container'>
+            <div className='form'>
 
             {/* Email Input */}
             {!candidateData && (
-            <div style={styles.section}>
-                <h2 style={styles.textTitleContent}>Obtener los datos</h2>
+            <div className='section'>
+                <h2 className='textTitleContent'>Obtener los datos</h2>
                 <p style={{color:'#000000'}}>Ingresa tu email para obtener tus datos de candidato:</p>
                 
-                <div style={styles.emailInputGroup}>
+                <div className='emailInputGroup'>
                 <input
                     type="email"
                     placeholder="tu.email@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleGetCandidateData()}
-                    style={styles.input}
+                    className='input'
                 />
                 <button
                     onClick={handleGetCandidateData}
                     disabled={loadingCandidate}
-                    style={{
-                    ...styles.button,
-                    opacity: loadingCandidate ? 0.6 : 1,
-                    }}
+                    className='button'
                 >
                     {loadingCandidate ? 'Cargando...' : 'Obtener Datos'}
                 </button>
                 </div>
 
                 {candidateError && (
-                <div style={styles.error}>
+                <div className='error'>
                     Error: {candidateError.message}
                 </div>
                 )}
@@ -181,70 +178,70 @@ export function JobApplicationForm() {
             {/* Candidato encontrado */}
             {candidateData && (
             <>
-                <div style={styles.header}>
-                    <div style={styles.buttonDivBack}>
-                        <button onClick={handleCancel} style={styles.iconButton}>
+                <div className='header'>
+                    <div className='buttonDivBack'>
+                        <button onClick={handleCancel} className='iconButton'>
                             <FontAwesomeIcon style={{color:'#2e1a47'}} icon={faArrowLeft} size="lg" />
                         </button>
                     </div>
-                    <div style={styles.candidateInfoHeader}>
-                        <h2 style={styles.textTitleContent}>Datos del Candidato</h2>
+                    <div className='candidateInfoHeader'>
+                        <h2 className='textTitleContent'>Datos del Candidato</h2>
                     </div>
                 </div>
-                <div style={styles.candidateDiv}>
-                    <div style={styles.candidateIcon}>
+                <div className='candidateDiv'>
+                    <div className='candidateIcon'>
                         <FontAwesomeIcon style={{color:'#2e1a47'}} icon={faCircleUser} size="10x" />
                     </div>
-                    <div style={styles.candidateInfo}>
-                        <p style={styles.pInfo}>
+                    <div className='candidateInfo'>
+                        <p className='pInfo'>
                             <strong>Nombre completo:</strong> {candidateData.firstName} {candidateData.lastName}
                         </p>
-                        <p style={styles.pInfo}>
+                        <p className='pInfo'>
                             <strong>Email:</strong> {candidateData.email}
                         </p>
-                        <p style={styles.pInfo}>
+                        <p className='pInfo'>
                             <strong>UUID:</strong> <code>{candidateData.uuid}</code>
                         </p>
-                        <p style={styles.pInfo}>
+                        <p className='pInfo'>
                             <strong>Candidate ID:</strong> <code>{candidateData.candidateId}</code>
                         </p>
-                        <p style={styles.pInfo}>
+                        <p className='pInfo'>
                             <strong>Aplication ID:</strong> <code>{candidateData.applicationId}</code>
                         </p>
                     </div>
                 </div>
 
                 {/* Lista de trabajos */}
-                <div style={styles.section}>
-                <h2 style={styles.textTitleContent}>Posiciones Disponibles</h2>
+                <div className='section'>
+                <h2 className='textTitleContent'>Posiciones Disponibles</h2>
 
                 {loadingJobs && <p> Cargando posiciones...</p>}
 
                 {jobsError && (
-                    <div style={styles.error}>
+                    <div className='error'>
                     Error al cargar posiciones: {jobsError.message}
                     </div>
                 )}
 
                 {jobsData &&
                     (Array.isArray(jobsData) ? jobsData : jobsData.jobs || []).length > 0 ? (
-                    <div style={styles.jobsList}>
+                    <div className='jobsList'>
                     {(Array.isArray(jobsData) ? jobsData : jobsData.jobs || []).map(
                         (job: Job) => (
-                        <div key={job.id} style={styles.jobCard}>
-                            <div style={styles.jobHeader}>
+                        <div key={job.id} className='jobCard'>
+                            <div className='jobHeader'>
                             <h3>{job.title}</h3>
                             {job.description && (
-                                <p style={styles.jobDescription}>{job.description}</p>
+                                <p className='jobDescription'>{job.description}</p>
                             )}
                             </div>
 
                             {successfulApplications.has(job.id) ? (
-                            <div style={styles.success}>
+                            <div className='success'>
                                 ¡Aplicación enviada exitosamente!
                             </div>
                             ) : (
-                            <div style={styles.jobForm}>
+                            <div className='jobForm'>
                                 <input
                                 type="url"
                                 placeholder="https://github.com/tu-usuario/tu-repo"
@@ -255,15 +252,12 @@ export function JobApplicationForm() {
                                     [job.id]: e.target.value,
                                     }))
                                 }
-                                style={styles.input}
+                               className='input'
                                 />
                                 <button
                                 onClick={() => handleApplyToJob(job.id)}
                                 disabled={loadingApplication}
-                                style={{
-                                    ...styles.submitButton,
-                                    opacity: loadingApplication ? 0.6 : 1,
-                                }}
+                                className='submitButton'
                                 >
                                 {loadingApplication ? 'Enviando...' : 'Enviar'}
                                 </button>
@@ -271,7 +265,7 @@ export function JobApplicationForm() {
                             )}
 
                             {applicationError && !successfulApplications.has(job.id) && (
-                            <div style={styles.error}>
+                            <div className='error'>
                                 Error: {applicationError.message}
                             </div>
                             )}
@@ -283,10 +277,10 @@ export function JobApplicationForm() {
                     <p>No hay posiciones disponibles en este momento.</p>
                 ) : null}
                 </div>
-            <div style={styles.buttonDivBack}>
+            <div className='buttonDivBack'>
             <button
             onClick={handleCancel}
-            style={styles.cancelButton}>
+            className='cancelButton'>
             Cancelar
             </button>
             </div>
@@ -299,191 +293,3 @@ export function JobApplicationForm() {
   );
 }
 
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    // width: '100%',
-    height: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#f4f8f8',
-  } as React.CSSProperties,
-  titleHeader: {
-    display: 'flex',
-    justifyContent: 'center',
-    paddingTop: '20px',
-    paddingBottom: '20px',
-    backgroundColor: 'rgba(46, 26, 71, 1)',
-    inset: '0 0 auto 0', 
-  } as React.CSSProperties,
-  form: {
-    background: 'none',
-    borderRadius: '8px',
-    height: '100%',
-    width: '100%',
-    padding: '5px 30px 5px 30px',
-    margin: '5px 150px 5px 150px',
-    backgroundColor: '#dfdede',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-  } as React.CSSProperties,
-  section: {
-    marginBottom: '30px',
-  } as React.CSSProperties,
-  emailInputGroup: {
-    display: 'flex',
-    gap: '10px',
-    marginBottom: '15px',
-  } as React.CSSProperties,
-  textTitleContent: {
-    color: '#2e1a47',
-  } as React.CSSProperties,
-  header: {
-    display: 'flex',
-  } as React.CSSProperties,
-  candidateInfoHeader: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: '15px',
-  } as React.CSSProperties,
-  candidateDiv: {
-    display: 'flex',
-    // justifyContent: 'center',
-    padding: '15px',
-    borderRadius: '6px',
-    marginBottom: '30px',
-  } as React.CSSProperties,
-  pInfo: {
-    fontSize:'16px', 
-    margin: '0 0 0 0'
-  }as React.CSSProperties,
-  candidateInfo: {
-    display:"flex", 
-    justifyContent:"space-around",
-    flexDirection:"column", 
-    textAlign:"left", 
-    marginLeft:"10px",
-    backgroundColor: 'rgba(46, 26, 71, 0.7)',
-    border: '1px solid #0a0a0ad5',
-    borderRadius: '6px',
-    paddingLeft: '20px',
-    paddingRight: '20px',
-    width: '100%',
-  } as React.CSSProperties,
-  candidateIcon: {
-    display:"flex", 
-    justifyContent:"flex-start", 
-    alignItems:"center",
-    marginRight:"10px",
-    padding: '5px',
-    // backgroundColor: 'rgba(46, 26, 71, 0.7)',
-    background: 'none',
-    // border: '1px solid #0a0a0ad5',
-    borderRadius: '6px',
-  } as React.CSSProperties,
-  buttonDivBack: {
-    display: 'flex', 
-    flex: '0 0 auto',
-    justifyContent: 'flex-start',
-    marginTop: '20px',
-  } as React.CSSProperties,
-  iconButton: {
-    padding: '4px 5px',
-    fontSize: '12px',
-    color: 'white',
-    background: 'none',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '28px',
-    width: '28px',
-    minWidth: '28px',
-    lineHeight: '1',
-  } as React.CSSProperties,
-  jobsList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px',
-    marginTop: '15px',
-  } as React.CSSProperties,
-  jobCard: {
-    padding: '15px',
-    border: '1px solid #000000',
-    borderRadius: '6px',
-    backgroundColor: 'rgba(46, 26, 71, 0.5)',
-  } as React.CSSProperties,
-  jobHeader: {
-    marginBottom: '12px',
-  } as React.CSSProperties,
-  jobDescription: {
-    fontSize: '0.9em',
-    color: '#666',
-    marginTop: '5px',
-  } as React.CSSProperties,
-  jobForm: {
-    display: 'flex',
-    gap: '10px',
-  } as React.CSSProperties,
-  input: {
-    flex: 1,
-    padding: '10px',
-    borderRadius: '4px',
-    border: '1px solid #ddd',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-  } as React.CSSProperties,
-  button: {
-    padding: '8px 24px',
-    fontSize: '16px',
-    color: 'white',
-    backgroundColor: '#2e1a47',
-    fontFamily: 'Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-  } as React.CSSProperties,
-  submitButton: {
-    padding: '8px 24px',
-    fontSize: '16px',
-    color: 'white',
-    fontFamily: 'Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif',
-    backgroundColor: '#2e1a47',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-  } as React.CSSProperties,
-  cancelButton: {
-    padding: '8px 24px',
-    fontSize: '16px',
-    color: 'white',
-    fontFamily: 'Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif',
-    backgroundColor: '#c23d38',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s',
-  } as React.CSSProperties,
-  error: {
-    padding: '12px',
-    backgroundColor: '#f8d7da',
-    color: '#721c24',
-    borderRadius: '6px',
-    marginTop: '10px',
-    border: '1px solid #f5c6cb',
-  } as React.CSSProperties,
-  success: {
-    padding: '12px',
-    backgroundColor: '#d4edda',
-    color: '#155724',
-    borderRadius: '6px',
-    marginTop: '10px',
-    border: '1px solid #c3e6cb',
-  } as React.CSSProperties,
-};
