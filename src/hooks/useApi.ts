@@ -52,7 +52,7 @@ export function useApi<T>() {
 
   /**
    * Realiza una petición PUT
-   */
+ 
   const put = useCallback(async (endpoint: string, body: unknown) => {
     setState({ data: null, loading: true, error: null });
     try {
@@ -64,11 +64,11 @@ export function useApi<T>() {
       setState({ data: null, loading: false, error: apiError });
       throw apiError;
     }
-  }, []);
+  }, []);  */
 
   /**
    * Realiza una petición DELETE
-   */
+
   const remove = useCallback(async (endpoint: string) => {
     setState({ data: null, loading: true, error: null });
     try {
@@ -81,12 +81,12 @@ export function useApi<T>() {
       throw apiError;
     }
   }, []);
-
+   */
   return {
     ...state,
     get,
     post,
-    put,
-    remove,
+    /*put,
+    remove,*/
   };
 }
